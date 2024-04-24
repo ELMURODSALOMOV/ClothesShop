@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClothesShop.Service
+namespace ClothesShop.Models
 {
-    internal interface IClothesService
+    internal enum ClothesType
     {
-
+        PoloShirt,
+        Shoes,
+        Jeans,
+        Coat
     }
 }
