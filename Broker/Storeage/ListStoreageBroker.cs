@@ -69,7 +69,14 @@ namespace ClothesShop.Broker.Storeage
 
         public Clothes GetClothes(int id)
         {
-            throw new NotImplementedException();
+            foreach(Clothes clothesIteim in this.clothes)
+            {
+                if(clothesIteim.Id == id)
+                {
+                    return clothesIteim;
+                }
+            }
+            return new Clothes();
         }
 
         public void PurchaseClothes(string model)
