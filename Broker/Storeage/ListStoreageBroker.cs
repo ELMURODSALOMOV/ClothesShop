@@ -10,7 +10,7 @@ namespace ClothesShop.Broker.Storeage
     internal class ListStoreageBroker : IStoreageBroker
     {
         List<Clothes> demoClothes = new List<Clothes>();
-        List<Clothes> clothes = new List<Clothes>();
+        private List<Clothes> clothes = new List<Clothes>();
         public ListStoreageBroker()
         {
             clothes[0] = new Clothes()
@@ -48,25 +48,24 @@ namespace ClothesShop.Broker.Storeage
             };
         }
 
-        public void AddClothes(Clothes clothes)
-        {
-            throw new NotImplementedException();
-        }
+        public void AddClothes(Clothes clothes) => this.clothes.Add(clothes);
 
-        public void AddRangeClothes(List<Clothes> clothes)
-        {
-            throw new NotImplementedException();
-        }
+        public void AddRangeClothes(List<Clothes> clothes) => this.clothes.AddRange(clothes);
 
         public bool DeleteClothes(int id)
         {
-            throw new NotImplementedException();
+            foreach(Clothes clothesIteim in this.clothes)
+            {
+                if (clothesIteim.Id == id)
+                {
+                    this.clothes.Remove(clothesIteim);
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public List<Clothes> GetAllClothes()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Clothes> GetAllClothes() => this.clothes;
 
         public Clothes GetClothes(int id)
         {
