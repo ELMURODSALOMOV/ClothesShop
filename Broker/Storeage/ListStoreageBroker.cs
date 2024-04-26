@@ -91,7 +91,21 @@ namespace ClothesShop.Broker.Storeage
 
         public Clothes UpdateClothes(int id, Clothes clothes)
         {
-            throw new NotImplementedException();
+            foreach(Clothes clothesIteim in this.clothes)
+            {
+                if(clothesIteim.Id == id)
+                {
+                    clothesIteim.Model = clothes.Model;
+                    clothesIteim.Type = clothes.Type;
+                    clothesIteim.Cost = clothes.Cost;
+                    clothesIteim.Size = clothes.Size;
+                    clothesIteim.Color = clothes.Color;
+                    clothesIteim.Discraption = clothes.Discraption;
+                    clothesIteim.Amount = clothes.Amount;
+                    return clothesIteim;
+                }
+            }
+            return clothes;
         }
     }
 }
