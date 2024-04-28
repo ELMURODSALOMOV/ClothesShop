@@ -13,7 +13,7 @@ namespace ClothesShop.Broker.Storeage
         private List<Clothes> clothes = new List<Clothes>();
         public ListStoreageBroker()
         {
-            clothes[0] = new Clothes()
+            this.clothes.Add(new Clothes()
             {
                 Id = 1,
                 Model = "GUCCI",
@@ -23,8 +23,8 @@ namespace ClothesShop.Broker.Storeage
                 Color = "Red",
                 Discraption = "Cotton, XL",
                 Amount = 20
-            };
-            clothes[1] = new Clothes()
+            });
+            this.clothes.Add( new Clothes()
             {
                 Id = 2,
                 Model = "LACOSTI",
@@ -34,8 +34,8 @@ namespace ClothesShop.Broker.Storeage
                 Color = "Blue",
                 Discraption = "Cotton 50%, synthetics 50%, XXl",
                 Amount = 16
-            };
-            clothes[2] = new Clothes()
+            });
+            this.clothes.Add( new Clothes()
             {
                 Id = 3,
                 Model = "Zara",
@@ -45,7 +45,7 @@ namespace ClothesShop.Broker.Storeage
                 Color = "Black",
                 Discraption = "Skin 100%, 60",
                 Amount = 23
-            };
+            });
         }
 
         public void AddClothes(Clothes clothes) => this.clothes.Add(clothes);
@@ -91,21 +91,25 @@ namespace ClothesShop.Broker.Storeage
 
         public Clothes UpdateClothes(int id, Clothes clothes)
         {
-            foreach(Clothes clothesIteim in this.clothes)
+            for (int itaration = 0; itaration < this.clothes.Count(); itaration++)
             {
-                if(clothesIteim.Id == id)
+                if (this.clothes[itaration].Id == id)
                 {
-                    clothesIteim.Model = clothes.Model;
-                    clothesIteim.Type = clothes.Type;
-                    clothesIteim.Cost = clothes.Cost;
-                    clothesIteim.Size = clothes.Size;
-                    clothesIteim.Color = clothes.Color;
-                    clothesIteim.Discraption = clothes.Discraption;
-                    clothesIteim.Amount = clothes.Amount;
-                    return clothesIteim;
+                    this.clothes[itaration] = new Clothes()
+                    {
+                        Model = clothes.Model,
+                        Type = clothes.Type,
+                        Cost = clothes.Cost,
+                        Size = clothes.Size,
+                        Color = clothes.Color,
+                        Discraption = clothes.Discraption,
+                        Amount = clothes.Amount
+                     };
+                    
+                    return clothes;
                 }
             }
-            return clothes;
+            return new Clothes();
         }
     }
 }
