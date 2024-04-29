@@ -40,10 +40,7 @@ namespace ClothesShop.Service
 
         public List<Clothes> ReadAllClothes()
         {
-            List<Clothes> clothesList = new List<Clothes>();
-            if(clothesList.Count is 0)
-            {
-            }
+            throw new NotImplementedException();
         }
 
         public Clothes ReadClothes(int id)

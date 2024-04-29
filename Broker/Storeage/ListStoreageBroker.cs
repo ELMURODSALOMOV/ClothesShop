@@ -1,15 +1,10 @@
 ﻿using ClothesShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClothesShop.Broker.Storeage
 {
     internal class ListStoreageBroker : IStoreageBroker
     {
-        List<Clothes> demoClothes = new List<Clothes>();
+        List<SoldProducts> demoClothes = new List<SoldProducts>();
         private List<Clothes> clothes = new List<Clothes>();
         public ListStoreageBroker()
         {
@@ -79,15 +74,56 @@ namespace ClothesShop.Broker.Storeage
             return new Clothes();
         }
 
-        public void PurchaseClothes(string model)
+        public void PurchaseClothes(string productType)
         {
-            throw new NotImplementedException();
+            for (int itaration = 0; itaration < clothes.Count(); itaration++)
+            {
+                if (clothes[itaration] is not null)
+                {
+                    if (clothes[itaration].Type.ToString() == productType)
+                    {
+                        if(IsClothesAndAdded(clothes[itaration]) is true)
+                        {
+                            clothes[itaration].Amount -= 1;
+                        }
+                    }
+                }
+            }
         }
 
-        public List<Clothes> SoldInformationClothes() 
+        private bool IsClothesAndAdded(Clothes clothes)
         {
-            throw new NotImplementedException();
+            bool isThere = false;
+            foreach (var clothesItem in demoClothes)
+            {
+                if (clothesItem.Equals(clothes))
+                {
+                    clothesItem.Amount += 1;
+                    clothesItem.Balance += clothes.Cost;
+                    isThere = true;
+                    return true;
+                }
+            }
+
+            if (isThere is false)
+            {
+                var info = new SoldProducts()
+                {
+                    Id = clothes.Id,
+                    Model = clothes.Model,
+                    Amount = 1,
+                    Balance = clothes.Cost
+                };
+
+                this.demoClothes.Add(info);
+                isThere = true;
+                return isThere;
+            }
+            return isThere;
         }
+
+        public List<SoldProducts> SoldInformationClothes() =>
+            this.demoClothes;
 
         public Clothes UpdateClothes(int id, Clothes clothes)
         {
