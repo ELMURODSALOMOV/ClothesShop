@@ -4,6 +4,7 @@ using ClothesShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,21 @@ namespace ClothesShop.Service
 
         public List<Clothes> ReadAllClothes()
         {
-            throw new NotImplementedException();
+            var clothes = this.listStoreageBroker.GetAllClothes();
+            foreach (var clothesItem in clothes )
+            {
+                if (clothesItem is not null)
+                {
+                    this.loggingBroker.LogInformation(
+                        $"Id  {clothesItem.Id}\n" +
+                        $"Model {clothesItem.Model}\n" +
+                        $"Type {clothesItem.Type} \n" +
+                        $"Cost {clothesItem.Cost} \n" +
+                        $"Amount {clothesItem.Amount} \n" +
+                        $"Discreption {clothesItem.Discraption} \n");
+                }
+            }
+            return clothes;
         }
 
         public Clothes ReadClothes(int id)
@@ -48,7 +63,7 @@ namespace ClothesShop.Service
             throw new NotImplementedException();
         }
 
-        public List<Clothes> SoldInformation()
+        public List<SoldProducts> SoldInformation()
         {
             throw new NotImplementedException();
         }
