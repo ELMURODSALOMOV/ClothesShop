@@ -84,7 +84,7 @@ namespace ClothesShop.Broker.Storeage
             throw new NotImplementedException();
         }
 
-        public List<Clothes> SoldInformationClothes()
+        public List<Clothes> SoldInformationClothes() 
         {
             throw new NotImplementedException();
         }
