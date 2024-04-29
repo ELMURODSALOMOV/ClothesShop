@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClothesShop.Broker.Logging
 {
-    internal class LoggingBroker
+    internal class LoggingBroker: ILoggingBroker
     {
         public void LogInformation(string message)
         {
