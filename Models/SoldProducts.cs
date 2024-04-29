@@ -10,7 +10,7 @@ namespace ClothesShop.Models
     {
         public int Id { get; set; }
         public string Model { get; set; }
-        public int Amout { get; set; }
-        public int Balance { get; set; }
+        public int Amount { get; set; }
+        public decimal Balance { get; set; }
     }
 }
