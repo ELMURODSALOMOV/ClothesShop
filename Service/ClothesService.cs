@@ -1,12 +1,6 @@
 ﻿using ClothesShop.Broker.Logging;
 using ClothesShop.Broker.Storeage;
 using ClothesShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClothesShop.Service
 {
@@ -99,7 +93,9 @@ namespace ClothesShop.Service
 
         public Clothes Update(int id, Clothes clothes)
         {
-            throw new NotImplementedException();
+            return id is 0
+                ? InvalidUpdateClothes()
+                : ValidationAndUpdateClothes(id, clothes);
         }
 
         private bool ValidationAndDelete(int id)
@@ -154,6 +150,7 @@ namespace ClothesShop.Service
             }
 
         }
+
         private List<Clothes> ValidationAndInsertRangeClothes(List<Clothes> clothes)
         {
             if (clothes is null)
@@ -194,6 +191,7 @@ namespace ClothesShop.Service
             this.loggingBroker.LogError("Id is invalid.");
             return new Clothes();
         }
+
         private void ValidationAndPurchase(string model)
         {
             if (String.IsNullOrEmpty(model))
@@ -211,5 +209,35 @@ namespace ClothesShop.Service
             this.loggingBroker.LogError("The sale did not go through.");
         }
 
+        private Clothes ValidationAndUpdateClothes(int id, Clothes clothes)
+        {
+            if (clothes.Id is 0
+                || String.IsNullOrWhiteSpace(clothes.Model)
+                || String.IsNullOrWhiteSpace(clothes.Type.ToString()))
+            {
+                this.loggingBroker.LogError("Clothes information is incomplete.");
+                return clothes;
+            }
+            else
+            {
+                var isUpdate = this.listStoreageBroker.UpdateClothes(id, clothes);
+                if (isUpdate is not null)
+                {
+                    this.loggingBroker.LogInformation("Update.");
+                    return isUpdate;
+                }
+                else
+                {
+                    this.loggingBroker.LogError("No Update.");
+                    return clothes;
+                }
+            }
+        }
+
+        private Clothes InvalidUpdateClothes()
+        {
+            this.loggingBroker.LogError("Clothes information is incomplete.");
+            return new Clothes();
+        }
     }
 }
