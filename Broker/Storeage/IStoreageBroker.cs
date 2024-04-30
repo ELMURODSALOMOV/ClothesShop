@@ -8,8 +8,8 @@ namespace ClothesShop.Broker.Storeage
         Clothes GetClothes(int id);
         bool DeleteClothes(int id);
         Clothes UpdateClothes(int id, Clothes clothes);
-        void AddClothes(Clothes clothes);
-        void AddRangeClothes(List<Clothes> clothes);
+        Clothes AddClothes(Clothes clothes);
+        List<Clothes> AddRangeClothes(List<Clothes> clothes);
         void PurchaseClothes(string productType);
         List<SoldProducts> SoldInformationClothes();
 
