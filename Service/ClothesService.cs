@@ -43,7 +43,15 @@ namespace ClothesShop.Service
 
         public void Purchase(string model)
         {
-            throw new NotImplementedException();
+            if (model is null)
+            {
+                InvalidPurchase();
+            }
+            else
+            {
+                ValidationAndPurchase(model);
+            }
+
         }
 
         public List<Clothes> ReadAllClothes()
@@ -173,6 +181,22 @@ namespace ClothesShop.Service
         {
             this.loggingBroker.LogError("Id is invalid.");
             return new Clothes();
+        }
+        private void ValidationAndPurchase(string model)
+        {
+            if (String.IsNullOrEmpty(model))
+            {
+                this.loggingBroker.LogError("Invalid clothes model.");
+            }
+            else
+            {
+                this.loggingBroker.LogInformation("The product was sold successfully.");
+            }
+        }
+
+        private void InvalidPurchase()
+        {
+            this.loggingBroker.LogError("The sale did not go through.");
         }
     }
 }
