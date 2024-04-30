@@ -67,7 +67,9 @@ namespace ClothesShop.Service
 
         public Clothes ReadClothes(int id)
         {
-            throw new NotImplementedException();
+            return id is 0
+                ? InvalidReadClothesId()
+                : ValidationAndReadClothes(id);
         }
 
         public List<SoldProducts> SoldInformation()
@@ -150,6 +152,27 @@ namespace ClothesShop.Service
         {
             this.loggingBroker.LogError("Clothing information was not provided.");
             return new List<Clothes>();
+        }
+
+        private Clothes ValidationAndReadClothes(int id)
+        {
+            var clothesInformation = this.listStoreageBroker.GetClothes(id);
+            if (clothesInformation is null)
+            {
+                this.loggingBroker.LogError("Clothes information is not found.");
+                return new Clothes();
+            }
+            else
+            {
+                this.loggingBroker.LogInformation("Successfully.");
+            }
+            return clothesInformation;
+        }
+
+        private Clothes InvalidReadClothesId()
+        {
+            this.loggingBroker.LogError("Id is invalid.");
+            return new Clothes();
         }
     }
 }
