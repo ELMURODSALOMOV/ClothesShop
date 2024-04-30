@@ -21,39 +21,20 @@ namespace ClothesShop.Service
             this.loggingBroker = new LoggingBroker();
         }
 
-
         public bool Delete(int id)
         {
             return id is 0
                 ? InvalidDeleteId()
                 : ValidationAndDelete(id);
         }
-
-        private bool ValidationAndDelete(int id)
+        public Clothes InsertClothes(Clothes clothes)
         {
-            bool isDelete = this.listStoreageBroker.DeleteClothes(id);
-            if(isDelete is true)
-            {
-                this.loggingBroker.LogInformation("The information in the id has been deleted.");
-                return isDelete;
-            }
-            else
-            {
-                this.loggingBroker.LogError("Id is Not Found.");
-                return isDelete;
-            }
+            return clothes is null
+                    ? InvalidInsertClothes()
+                    : ValidationAndInsertClothes(clothes);
         }
 
-        private bool InvalidDeleteId()
-        {
-            this.loggingBroker.LogError("The id information is invalid.");
-            return false;
-        }
-        public void InsertClothes(Clothes clothes)
-        {
-        }
-
-        public void InsertRangeClothes(List<Clothes> clothes)
+        public List<Clothes> InsertRangeClothes(List<Clothes> clothes)
         {
             throw new NotImplementedException();
         }
@@ -95,6 +76,59 @@ namespace ClothesShop.Service
         public Clothes Update(int id, Clothes clothes)
         {
             throw new NotImplementedException();
+        }
+
+        private bool ValidationAndDelete(int id)
+        {
+            bool isDelete = this.listStoreageBroker.DeleteClothes(id);
+            if (isDelete is true)
+            {
+                this.loggingBroker.LogInformation("The information in the id has been deleted.");
+                return isDelete;
+            }
+            else
+            {
+                this.loggingBroker.LogError("Id is Not Found.");
+                return isDelete;
+            }
+        }
+
+        private bool InvalidDeleteId()
+        {
+            this.loggingBroker.LogError("The id information is invalid.");
+            return false;
+        }
+
+        private Clothes InvalidInsertClothes()
+        {
+            this.loggingBroker.LogError("Clothes info is null.");
+            return new Clothes();
+        }
+
+        private Clothes ValidationAndInsertClothes(Clothes clothes)
+        {
+            if (clothes.Id is 0
+                || String.IsNullOrWhiteSpace(clothes.Model)
+                || String.IsNullOrWhiteSpace(clothes.Type.ToString()))
+            {
+                this.loggingBroker.LogError("Invalid clothes information.");
+                return new Clothes();
+            }
+            else
+            {
+                var clothesInformation = this.listStoreageBroker.AddClothes(clothes);
+                if (clothesInformation is null)
+                {
+                    this.loggingBroker.LogError("Not added clothes info");
+                    return new Clothes();
+                }
+                else
+                {
+                    this.loggingBroker.LogInformation("Sucssesfull.");
+                }
+                return clothes;
+            }
+
         }
     }
 }
