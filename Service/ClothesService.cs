@@ -14,19 +14,43 @@ namespace ClothesShop.Service
     {
         private readonly ILoggingBroker loggingBroker;
         private readonly IStoreageBroker listStoreageBroker;
+
         public ClothesService()
         {
             this.listStoreageBroker = new ListStoreageBroker();
             this.loggingBroker = new LoggingBroker();
         }
+
+
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return id is 0
+                ? InvalidDeleteId()
+                : ValidationAndDelete(id);
         }
 
+        private bool ValidationAndDelete(int id)
+        {
+            bool isDelete = this.listStoreageBroker.DeleteClothes(id);
+            if(isDelete is true)
+            {
+                this.loggingBroker.LogInformation("The information in the id has been deleted.");
+                return isDelete;
+            }
+            else
+            {
+                this.loggingBroker.LogError("Id is Not Found.");
+                return isDelete;
+            }
+        }
+
+        private bool InvalidDeleteId()
+        {
+            this.loggingBroker.LogError("The id information is invalid.");
+            return false;
+        }
         public void InsertClothes(Clothes clothes)
         {
-            throw new NotImplementedException();
         }
 
         public void InsertRangeClothes(List<Clothes> clothes)
