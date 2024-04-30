@@ -36,7 +36,9 @@ namespace ClothesShop.Service
 
         public List<Clothes> InsertRangeClothes(List<Clothes> clothes)
         {
-            throw new NotImplementedException();
+            return clothes is null
+                ? InvalidInsertRangeClothes()
+                : ValidationAndInsertRangeClothes(clothes);
         }
 
         public void Purchase(string model)
@@ -129,6 +131,25 @@ namespace ClothesShop.Service
                 return clothes;
             }
 
+        }
+        private List<Clothes> ValidationAndInsertRangeClothes(List<Clothes> clothes)
+        {
+            if (clothes is null)
+            {
+                this.loggingBroker.LogError("No data available.");
+                return new List<Clothes>();
+            }
+            else
+            {
+                this.loggingBroker.LogInformation("The clothes were washed successfully.");
+            }
+            return clothes;
+        }
+
+        private List<Clothes> InvalidInsertRangeClothes()
+        {
+            this.loggingBroker.LogError("Clothing information was not provided.");
+            return new List<Clothes>();
         }
     }
 }
