@@ -201,6 +201,7 @@ namespace ClothesShop.Service
             else
             {
                 this.loggingBroker.LogInformation("The product was sold successfully.");
+                this.listStoreageBroker.PurchaseClothes(model);
             }
         }
 
