@@ -181,6 +181,13 @@ namespace ClothesShop.Service
             }
             else
             {
+                this.loggingBroker.LogInformation(
+                        $"Id  {clothesInformation.Id}\n" +
+                        $"Model {clothesInformation.Model}\n" +
+                        $"Type {clothesInformation.Type} \n" +
+                        $"Cost {clothesInformation.Cost} \n" +
+                        $"Amount {clothesInformation.Discraption} \n" +
+                        $"Discreption {clothesInformation.Amount} \n");
                 this.loggingBroker.LogInformation("Successfully.");
             }
             return clothesInformation;

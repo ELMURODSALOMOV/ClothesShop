@@ -29,22 +29,7 @@ do
     }
     if(command.Contains("3") is true)
     {
-        Clothes clothes1 = new Clothes();
-        Console.Write("Enter the id: ");
-        clothes1.Id = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the model: ");
-        clothes1.Model = Console.ReadLine();
-        Console.Write("Enter the size: ");
-        clothes1.Size = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the cost: ");
-        clothes1.Cost = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the color: ");
-        clothes1.Color = Console.ReadLine();
-        Console.Write("Enter the discraption:");
-        clothes1.Discraption = Console.ReadLine();
-        Console.Write("Enter the amount: ");
-        clothes1.Amount = Convert.ToInt32(Console.ReadLine());
-        clothesService.InsertClothes(clothes1);
+        clothesService.InsertClothes(InputClothesInformation());
     }
     if(command.Contains("4") is true)
     {
@@ -53,43 +38,13 @@ do
         List<Clothes> newClothes = new List<Clothes>();
         for(int itiration = 1; itiration <= number; itiration++)
         {
-            Clothes clothes = new Clothes();
-            Console.Write("Enter the id: ");
-            clothes.Id = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter the model: ");
-            clothes.Model = Console.ReadLine();
-            Console.Write("Enter the size: ");
-            clothes.Size = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter the cost: ");
-            clothes.Cost = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter the color: ");
-            clothes.Color = Console.ReadLine();
-            Console.Write("Enter the discraption: ");
-            clothes.Discraption = Console.ReadLine();
-            Console.Write("Enter the amount; ");
-            clothes.Amount = Convert.ToInt32(Console.ReadLine());
-            newClothes.Add(clothes);
+            newClothes.Add(InputClothesInformation());
         }
         clothesService.InsertRangeClothes(newClothes);
     }
     if (command.Contains("5") is true)
     {
-        Clothes clothes = new Clothes();
-        Console.Write("Enter the id: ");
-        clothes.Id = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the model: ");
-        clothes.Model = Console.ReadLine();
-        Console.Write("Enter the size: ");
-        clothes.Size = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the cost: ");
-        clothes.Cost = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the color: ");
-        clothes.Color = Console.ReadLine();
-        Console.Write("Enter the discraption: ");
-        clothes.Discraption = Console.ReadLine();
-        Console.Write("Enter the amount: ");
-        clothes.Amount = Convert.ToInt32(Console.ReadLine());
-        clothesService.Update(1, clothes);
+        clothesService.Update(1, InputClothesInformation());
     }
     if (command.Contains("6") is true)
     {
@@ -99,11 +54,11 @@ do
     }
     if(command.Contains("7") is true)
     {
-        Console.Write("Enter product model: ");
-        string model = Console.ReadLine();
-        clothesService.Purchase(model);
+        Console.Write("Enter product type: ");
+        string type = Console.ReadLine();
+        clothesService.Purchase(type);
     }
-    if (command.Contains("9") is true)
+    if (command.Contains("8") is true)
     {
         clothesService.SoldInformation();
     }
@@ -114,3 +69,25 @@ do
         isContinue = false;
     }
 }while(isContinue is true);
+
+static Clothes InputClothesInformation()
+{
+    Clothes clothes = new Clothes();
+    Console.Write("Enter the id: ");
+    clothes.Id = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Enter the model: ");
+    clothes.Model = Console.ReadLine();
+    Console.Write("Enter the type: ");
+    clothes.Type = Console.ReadLine();
+    Console.Write("Enter the size: ");
+    clothes.Size = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Enter the cost: ");
+    clothes.Cost = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Enter the color: ");
+    clothes.Color = Console.ReadLine();
+    Console.Write("Enter the discraption: ");
+    clothes.Discraption = Console.ReadLine();
+    Console.Write("Enter the amount: ");
+    clothes.Amount = Convert.ToInt32(Console.ReadLine());
+    return clothes;
+}
