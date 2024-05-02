@@ -12,7 +12,7 @@ namespace ClothesShop.Broker.Storeage
             {
                 Id = 1,
                 Model = "GUCCI",
-                Type = ClothesType.PoloShirt,
+                Type = ClothesType.PoloShirt.ToString(),
                 Cost = 100000,
                 Size = 58,
                 Color = "Red",
@@ -23,7 +23,7 @@ namespace ClothesShop.Broker.Storeage
             {
                 Id = 2,
                 Model = "LACOSTI",
-                Type = ClothesType.Jeans,
+                Type = ClothesType.Jeans.ToString(),
                 Cost = 120000,
                 Size = 55,
                 Color = "Blue",
@@ -34,7 +34,7 @@ namespace ClothesShop.Broker.Storeage
             {
                 Id = 3,
                 Model = "Zara",
-                Type = ClothesType.Shoes,
+                Type = ClothesType.Shoes.ToString(),
                 Cost = 200000,
                 Size = 60,
                 Color = "Black",
@@ -45,13 +45,39 @@ namespace ClothesShop.Broker.Storeage
 
         public Clothes AddClothes(Clothes clothes)
         {
-           this.clothes.Add(clothes);
-           return clothes;
+            bool isThere = false;
+            foreach(var clothesItem in this.clothes)
+            {
+                if(clothesItem.Type.Equals(clothes.Type))
+                {
+                    clothesItem.Amount += clothes.Amount;
+                    isThere = true;
+                    return clothesItem;
+                }
+            }
+            if(isThere is false)
+            {
+                this.clothes.Add(clothes);
+            }
+            return clothes;
         }
 
         public List<Clothes> AddRangeClothes(List<Clothes> clothes)
         {
-            this.clothes.AddRange(clothes);
+            for(int iteration = 0; iteration < clothes.Count; iteration ++)
+            {
+                for(int itiration = 0;  itiration < this.clothes.Count; itiration ++)
+                {
+                    if (this.clothes[itiration].Type.Equals(clothes[iteration].Type))
+                    {
+                        this.clothes[itiration].Amount += clothes[iteration].Amount;
+                    }
+                    else
+                    {
+                        this.clothes.AddRange(clothes);
+                    }
+                }
+            }
             return clothes;
         }
 
@@ -104,7 +130,7 @@ namespace ClothesShop.Broker.Storeage
             bool isThere = false;
             foreach (var clothesItem in demoClothes)
             {
-                if (clothesItem.Equals(clothes))
+                if (clothesItem.Type.Contains(clothes.Type))
                 {
                     clothesItem.Amount += 1;
                     clothesItem.Balance += clothes.Cost;
@@ -119,6 +145,7 @@ namespace ClothesShop.Broker.Storeage
                 {
                     Id = clothes.Id,
                     Model = clothes.Model,
+                    Type = clothes.Type,
                     Amount = 1,
                     Balance = clothes.Cost
                 };

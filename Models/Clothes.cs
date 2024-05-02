@@ -10,7 +10,7 @@ namespace ClothesShop.Models
     {
         public int Id { get; set; }
         public string Model { get; set; }
-        public ClothesType Type { get; set; }
+        public string Type { get; set; }
         public int Size {get; set; }
         public decimal Cost { get; set; }
         public string Color { get; set; }
