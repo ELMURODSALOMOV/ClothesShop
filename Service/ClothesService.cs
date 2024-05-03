@@ -153,16 +153,18 @@ namespace ClothesShop.Service
 
         private List<Clothes> ValidationAndInsertRangeClothes(List<Clothes> clothes)
         {
-            if (clothes is null)
+            List<Clothes> clothesInfo = this.listStoreageBroker.AddRangeClothes(clothes);
+            if (clothesInfo is null)
             {
                 this.loggingBroker.LogError("No data available.");
                 return new List<Clothes>();
             }
             else
             {
+                
                 this.loggingBroker.LogInformation("The clothes were washed successfully.");
             }
-            return clothes;
+            return clothesInfo;
         }
 
         private List<Clothes> InvalidInsertRangeClothes()
