@@ -52,9 +52,12 @@ namespace ClothesShop.Broker.Storeage
                 if(clothesItem.Type.ToString().ToLower().Equals(clothes.Type.ToString().ToLower())
                         && clothesItem.Model.ToString().ToLower().Equals(clothes.Model.ToString().ToLower()))
                 {
-                    //color
-                    //cost
+                    if (!clothesItem.Color.Equals(clothes.Color))
+                    {
+                        clothesItem.Color = String.Concat($"{clothesItem.Color}", $", {clothes.Color}");
+                    }
                     clothesItem.Amount += clothes.Amount;
+                    clothesItem.Cost = clothes.Cost;
                     isThere = true;
                     return clothesItem;
                 }
@@ -77,9 +80,13 @@ namespace ClothesShop.Broker.Storeage
                         && this.clothes[itiration].Model.ToString().ToLower().Equals(clothes[iteration].Model.ToString().ToLower()))
                     {
                         isAddedClothesInfo = true;
-                        //color
-                        //cost
+                        if (!this.clothes[itiration].Color.Equals(clothes[iteration].Color))
+                        {
+                            this.clothes[itiration].Color = String.Concat($"{this.clothes[itiration].Color}",
+                                $", {clothes[iteration].Color}");
+                        }
                         this.clothes[itiration].Amount += clothes[iteration].Amount;
+                        this.clothes[itiration].Cost = clothes[iteration].Cost;
                     }
                 }
 

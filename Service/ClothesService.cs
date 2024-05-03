@@ -55,11 +55,12 @@ namespace ClothesShop.Service
             {
                 if (clothesItem is not null)
                 {
-                    this.loggingBroker.LogInformation(
+                    this.loggingBroker.LogInfo(
                         $"Id  {clothesItem.Id}\n" +
                         $"Model {clothesItem.Model}\n" +
                         $"Type {clothesItem.Type} \n" +
                         $"Cost {clothesItem.Cost} \n" +
+                        $"Color {clothesItem.Color} \n" +
                         $"Amount {clothesItem.Amount} \n" +
                         $"Discreption {clothesItem.Discraption} \n");
                 }
@@ -81,7 +82,7 @@ namespace ClothesShop.Service
             {
                 if(clothesItem is not null)
                 {
-                    this.loggingBroker.LogInformation(
+                    this.loggingBroker.LogInfo(
                         $"Id {clothesItem.Id}\n" +
                         $"Model {clothesItem.Model}\n" +
                         $"Amount {clothesItem.Amount}\n" +
@@ -183,11 +184,12 @@ namespace ClothesShop.Service
             }
             else
             {
-                this.loggingBroker.LogInformation(
+                this.loggingBroker.LogInfo(
                         $"Id  {clothesInformation.Id}\n" +
                         $"Model {clothesInformation.Model}\n" +
                         $"Type {clothesInformation.Type} \n" +
                         $"Cost {clothesInformation.Cost} \n" +
+                        $"Color {clothesInformation.Color} \n" +
                         $"Amount {clothesInformation.Discraption} \n" +
                         $"Discreption {clothesInformation.Amount} \n");
                 this.loggingBroker.LogInformation("Successfully.");
