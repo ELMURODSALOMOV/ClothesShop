@@ -26,5 +26,12 @@ namespace ClothesShop.Broker.Logging
             Console.WriteLine(exception);
             Console.ResetColor();
         }
+
+        public void LogInfo(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
     }
 }
