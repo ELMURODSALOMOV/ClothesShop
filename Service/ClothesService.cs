@@ -1,7 +1,7 @@
 ﻿using ClothesShop.Broker.Logging;
 using ClothesShop.Broker.Storeage;
 using ClothesShop.Models;
-
+//ClothesService
 namespace ClothesShop.Service
 {
     internal class ClothesService : IClothesService
