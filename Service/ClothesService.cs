@@ -223,7 +223,7 @@ namespace ClothesShop.Service
         private Clothes ValidationAndReadClothes(int id)
         {
             var clothesInformation = this.listStoreageBroker.GetClothes(id);
-            if (clothesInformation is null)
+            if (clothesInformation is null || clothesInformation.Id != id)
             {
                 this.loggingBroker.LogError("Clothes information is not found.");
                 return new Clothes();
