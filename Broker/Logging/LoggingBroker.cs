@@ -29,7 +29,7 @@ namespace ClothesShop.Broker.Logging
 
         public void LogInfo(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(message);
             Console.ResetColor();
         }
