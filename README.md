@@ -68,7 +68,7 @@ If you enter clothing data into the function that is not in the database, it wil
 ## 7.0 Purchase Product
 ### 7.1 This function is the sales department.
 In this feature, you can sell clothes from your clothing store.
-![Purchase Product](/Image/Purchase-Product.gif)
+![Purchase Product](/Image/Purchase-Clothes.gif)
 
 ### 7.2 About the error in the function.
 If you enter into the function a clothing reference that does not exist in the database of your clothing store, the function will return such an error.
