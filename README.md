@@ -21,7 +21,7 @@ You can see how this function works.
 ### 1.2 If there is no information in the database.
 A situation in which there is no information in the database.
 ### Error Code
-![Error Code](/Image/Error-Code.gif)
+![Error Code](/Image/Error-Get-Clothes.gif)
 
 ## 2.0 Get all clothes
 ### 2.1 This function retrieves all the data in the database.
