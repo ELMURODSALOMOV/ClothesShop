@@ -1,4 +1,8 @@
-﻿using ClothesShop.Broker.Logging;
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+
+using ClothesShop.Broker.Logging;
 using ClothesShop.Broker.Storeage;
 using ClothesShop.Models;
 

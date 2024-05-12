@@ -1,4 +1,6 @@
-﻿
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
 
 using ClothesShop.Models;
 using ClothesShop.Service;
@@ -67,6 +69,16 @@ do
     if(isCommand.ToLower().Contains("no") is true)
     {
         isContinue = false;
+    }
+    else if (isCommand.ToLower().Contains("yes") is true)
+    {
+        isContinue = true;
+        Console.Clear();
+    }
+    else
+    {
+        isContinue = false;
+        Console.WriteLine("The command was issued incorrectly.");
     }
 }while(isContinue is true);
 
