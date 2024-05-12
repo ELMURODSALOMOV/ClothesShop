@@ -1,5 +1,8 @@
-﻿using ClothesShop.Models;
-using Microsoft.VisualBasic;
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+
+using ClothesShop.Models;
 
 namespace ClothesShop.Broker.Storeage
 {

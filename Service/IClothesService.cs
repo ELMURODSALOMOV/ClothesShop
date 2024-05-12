@@ -1,4 +1,8 @@
-﻿using ClothesShop.Models;
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+
+using ClothesShop.Models;
 
 namespace ClothesShop.Service
 {
